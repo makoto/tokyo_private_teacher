@@ -19,6 +19,9 @@ To start up TT in file B+Tree database mode, specify ".tcb" suffix.
 
 ## 2. TCB operations - part 1
 
+*NOTE* If you are not familier with command line tool, refer to [general doc](./general.md)
+
+
 ## putdup/putdupback/getlist
 
 Store a record with allowing duplication of keys. "putdup" stores downward and "putdupback" stores upward. 

@@ -39,6 +39,8 @@ A little Trivia: Lots of Mikio's code example data are from ["JoJo's Bizarre Adv
 
 ## 3. TCT operations - part 2
 
+*NOTE* If you are not familier with command line tool, refer to [general doc](./general.md)
+
 ## search.
 
 Searching the query result is very similar to sql.
