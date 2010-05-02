@@ -42,7 +42,9 @@ For the full command list, refer to http://1978th.net/tokyotyrant/spex.html#clie
 
 ## 3. What is TCH.
 
-Hash (TCH) provides basic functionality for key value stores. Key can be binary or text, but  must be unique. In adition to basic operations (get/put/out), you can do various operations, such as appending values to a value to use like array (putcat), traversing values(iterinit/iternext), and storing multiple records(putlist/getlist), 
+Hash (TCH) provides basic functionality as a key/value store. Key can be binary or text, but  must be unique. In adition to basic operations (get/put/out), you can do various operations, such as appending values to a value to use like array (putcat), traversing values(iterinit/iternext), and storing multiple records(putlist/getlist).
+
+Most functionalities introduced here will work in other database types (B+Tree, and Table), but they will be slower than TCH. TCF(Fixed length database) is faster than TCH, but it can only store fixed length number.
 
 To start up TT in on-memory hash database mode, specify either "*" or no options.
 
@@ -176,7 +178,7 @@ For more information , check http://www.igvita.com/2009/07/13/extending-tokyo-ca
 
 ## 11. TCH advanced operations - part 1
 
-## misc iternext
+## misc iterinit/iternext
 
 If you want to use more advanced operations, you need to specify them as subcomands of misc command.
 
@@ -193,14 +195,11 @@ Few examples are "iterinit/iternext" which traverse the database. This is quite 
       two
       second,dos
 
-You will see more example of "misc" when you use specific features of other database types, such as B+Tree and Table.
-For more information, check http://tokyocabinetwiki.pbworks.com/37_hidden_features_of_the_misc_method
-
 !SLIDE full-page
 
 ## 12. TCH advanced operations - part 2
 
-## misc  
+## misc putlist/getlist
 
 You can also add multiple key/values in one operation.
 
@@ -211,3 +210,23 @@ You can also add multiple key/values in one operation.
       two
       dos
       three
+
+      !SLIDE full-page
+
+## 12. TCH advanced operations - part 3
+
+## misc regex
+
+You can also get multiple record which keys matches regular expressions
+
+      $ tcrmgr put localhost abc hello
+      $ tcrmgr put localhost bcd world
+      $ tcrmgr put localhost dce helloworld
+      $ tcrmgr misc localhost regex bc
+      abc
+      hello
+      bcd
+      world
+
+You will see more example of "misc" when you use specific features of other database types, such as B+Tree and Table.
+For more information, check http://tokyocabinetwiki.pbworks.com/37_hidden_features_of_the_misc_method
