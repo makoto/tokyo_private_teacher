@@ -9,17 +9,33 @@
 
 * Tokyo Cabinet(TC) is a high performance DBM(Data Base Manager). TC supports hash(TCH) , B+ tree(TCB), fixed-length array(TCF) and table database type(TCT). Each database supports various functionalities with some performance tradeoffs. Each database can be accessed through various programming language bindings(Java, Lua, Perl, Ruby are officially supported) or through Tokyo Tyrant.
 
-* Tokyo Tyrant(TT) is a network interface to Tokyo Cabinet. TT offers multiple process client access (such as web server). TT uses the abstract API of Tokyo Cabinet(TCA) which offers common interface to various TC database types. You can access TT via http client, memcached client, various programming language bindings, or command line tools which we use for this tutorial
+* Tokyo Tyrant(TT) is a network interface to Tokyo Cabinet. TT offers multiple process client access (such as web server). TT uses the abstract API of Tokyo Cabinet(TCA) which offers common interface to various TC database types. You can access TT via http client, memcached client, various programming language bindings, or command line tools which we use for this tutorial. It also supports replication.
+
+In this tutorial, all the samples are based on TT. Does this mean you should always use TC via TT?
+
+You may consider using TC directly for the following conditions.
+
+* For optimal speed.
+* Non web based app (eg: data mining, batch process)
+* For transaction support.
 
 !SLIDE full-page
 
 ## 2. Command Line tools
 
+## tchmgr/tcfmgr/tctmgr/tcamgr
+
+They are tools to access each different databases through command line.
+
+  tchmgr put [-options] path key value
+
+Since each command id almost identical to tcrmgr which I explain later, I won't use them in this tutorial.
+
 ## ttserver
 
 The command `ttserver' is a command to startup server.
 
-    ttserver [-host name] [-port num] [options] [dbname]
+    ttserver [-host name] [-port num] [-options] [dbname]
 
 If you run it without any parameter, it will start as on-memory hash database.
 
@@ -34,7 +50,6 @@ The command `tcrmgr' is a utility for test and debugging TC through TT.
 In this tutorial, you specify "localhost" at "host"
 
     tcrmgr put localhost foo bar
-
   
 For the full command list, refer to http://1978th.net/tokyotyrant/spex.html#clientprog
 

@@ -88,6 +88,8 @@ For more information, check http://1978th.net/tokyocabinet/spex-en.html#tctdbapi
 
 Metasearch provides UNION, INTERSECTION, and DIFF capability.
 
+Work in progress.
+
 !SLIDE full-page
 
 ## 6. TCT operations - part 5
@@ -95,6 +97,7 @@ Metasearch provides UNION, INTERSECTION, and DIFF capability.
 
 ## Setting Index.
 
+Work in progress.
 
 ## 7 TCT operations - part 6
 
@@ -134,6 +137,10 @@ For more information, check http://github.com/actsasflinn/ruby-tokyotyrant
 
 Some operations are only available from Language bindings (because "misc" does not support all operations). One useful example is "proc". "proc" is equivalent to "update" of sql and let you update rows which matches the condition in atomic way.
 
+    require 'tokyotyrant'
+    include TokyoTyrant
+    qry = RDBQRY::new(rdb)
+    qry.addcond("name", TDBQRY::QCSTRBW, "Jo")
     qry.proc() do |pkey, cols|
         cols["sex"] = cols["sex"] == "male" ? "female" : "male"
         TDBQRY::QPPUT
